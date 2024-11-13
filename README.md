@@ -47,7 +47,7 @@ To run the project locally, follow these steps:
 4. Create a .env file in the root directory and add the necessary environment variables:
 
    ```bash
-  # Database
+   # Database
 MONGO_URI="your_mongodb_connection_string"
 
 # Server
@@ -68,6 +68,8 @@ ADMIN_PASSWORD="your_admin_password"
 # Razorpay
 RAZORPAY_KEY_ID="your_razorpay_key_id"
 RAZORPAY_KEY_SECRET="your_razorpay_key_secret"
+
+
 
    ```
 
