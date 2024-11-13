@@ -30,24 +30,15 @@ To run the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/Prudhviganesh09/CureConnect
-   ```
+Navigate to the project directory:
 
-2. Navigate to the project directory:
+cd CureConnect
+Install dependencies:
 
-   ```bash
-   cd CureConnect
-   ```
+npm install
+Create a .env file in the root directory and add the necessary environment variables:
 
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Create a .env file in the root directory and add the necessary environment variables:
-
-   ```bash
-   # Database
+# Database
 MONGO_URI="your_mongodb_connection_string"
 
 # Server
@@ -68,48 +59,27 @@ ADMIN_PASSWORD="your_admin_password"
 # Razorpay
 RAZORPAY_KEY_ID="your_razorpay_key_id"
 RAZORPAY_KEY_SECRET="your_razorpay_key_secret"
+Start the development server:
 
+npm start
+Open your browser and visit http://localhost:5173 to access the application.
 
+Usage
+Select a doctor from the list of available doctors.
+View the doctor's profile to get information on their specialization, experience, and appointment fee.
+Browse the available time slots for the next 7 days.
+Select a time slot and confirm your booking.
+Home Page
+Home Page
 
-   ```
+Top Doctors Page
+Top Doctors
 
-5. Start the development server:
+Appointment Booking Page
+Appointment Booking
 
-   ```bash
-   npm start
-   ```
-
-6. Open your browser and visit `http://localhost:5173` to access the application.
-
-## Usage
-
-- Select a doctor from the list of available doctors.
-- View the doctor's profile to get information on their specialization, experience, and appointment fee.
-- Browse the available time slots for the next 7 days.
-- Select a time slot and confirm your booking.
-
-## Home Page
-
-![image](https://github.com/user-attachments/assets/4de10b8d-9121-48cc-9454-3bd3b31d01fc)
-
-
-## Top Doctors Page
-
-![image](https://github.com/user-attachments/assets/42cc2552-9d1b-45c9-8cb5-4e9cc10ea9ea)
-
-## Appointment Booking Page
-
-![image](https://github.com/user-attachments/assets/f979cd9d-ee89-4d13-886f-621ed0ad065d)
-
-## Future Enhancements
-
-- Payment Gateway Integration: Allow users to pay for appointments directly through the platform.
-- Reviews and Ratings: Enable patients to leave reviews and ratings for doctors after their appointments.
-- Search and Filtering: Add advanced search functionality to filter doctors by specialty, location, and ratings.
-
-
-
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/dfa3526f-f2c7-4999-879d-449aab91c674" alt="cureconnectlogored" width="200"/>
-</p>
+Future Enhancements
+Payment Gateway Integration: Allow users to pay for appointments directly through the platform.
+Reviews and Ratings: Enable patients to leave reviews and ratings for doctors after their appointments.
+Search and Filtering: Add advanced search functionality to filter doctors by specialty, location, and ratings.
+<p align="center"> <img src="https://github.com/user-attachments/assets/dfa3526f-f2c7-4999-879d-449aab91c674" alt="CureConnect Logo Red" width="200"/> </p> ```
