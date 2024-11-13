@@ -47,8 +47,28 @@ To run the project locally, follow these steps:
 4. Create a .env file in the root directory and add the necessary environment variables:
 
    ```bash
-   MONGO_URI=your_mongodb_connection_string
-   PORT=your_port_number
+  # Database
+MONGO_URI="your_mongodb_connection_string"
+
+# Server
+PORT=your_port_number
+
+# Authentication
+JWT_SECRET="your_jwt_secret_key"
+
+# Cloudinary
+CLOUDINARY_NAME="your_cloudinary_name"
+CLOUDINARY_API_KEY="your_cloudinary_api_key"
+CLOUDINARY_SECRET_KEY="your_cloudinary_secret_key"
+
+# Admin Credentials
+ADMIN_EMAIL="your_admin_email"
+ADMIN_PASSWORD="your_admin_password"
+
+# Razorpay
+RAZORPAY_KEY_ID="your_razorpay_key_id"
+RAZORPAY_KEY_SECRET="your_razorpay_key_secret"
+
    ```
 
 5. Start the development server:
