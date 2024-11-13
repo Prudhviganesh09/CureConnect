@@ -59,6 +59,8 @@ ADMIN_PASSWORD="your_admin_password"
 # Razorpay
 RAZORPAY_KEY_ID="your_razorpay_key_id"
 RAZORPAY_KEY_SECRET="your_razorpay_key_secret"
+
+
 Start the development server:
 
 npm start
