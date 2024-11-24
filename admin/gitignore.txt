@@ -1,0 +1,35 @@
+# Node.js / Express
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# React
+node_modules/
+build/
+.env
+.vscode/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+
+# MongoDB data files
+*.db
+*.bak
+
+# Test-related files
+coverage/
+
+# Yarn & npm lock files (if not using both)
+yarn.lock
+package-lock.json
