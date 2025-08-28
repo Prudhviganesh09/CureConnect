@@ -25,10 +25,12 @@ const MyAppointments = () => {
         // console.log(data.appointment);
         
 
+      } else {
+        toast.error(data.message || 'Failed to fetch appointments')
       }
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      toast.error(error.response?.data?.message || error.message || 'Failed to fetch appointments')
     }
   }
 
@@ -43,12 +45,12 @@ const MyAppointments = () => {
         getDoctorsData()
       }
       else{
-        toast.error(data.message)
+        toast.error(data.message || 'Failed to cancel appointment')
       }
       
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      toast.error(error.response?.data?.message || error.message || 'Failed to cancel appointment')
     }
   }
 
@@ -62,16 +64,20 @@ const MyAppointments = () => {
     order_id:order.id,
     receipt: order.receipt,
     handler: async(response)=>{
-      // console.log(response);
+      console.log('Razorpay response:', response);
     try {
-      const {data} = axios.post(backendUrl + '/api/user/verifyRazorpay', response, {headers:{token}})
+      const {data} = await axios.post(backendUrl + '/api/user/verifyRazorpay', response, {headers:{token}})
+      console.log('Verification response:', data);
       if(data.success){
+        toast.success(data.message)
         getUserAppointMents()
         navigate('/my-appointments')
+      } else {
+        toast.error(data.message || 'Payment verification failed')
       }
     } catch (error) {
-      console.log(error)
-      toast.error(error.message)
+      console.log('Verification error:', error)
+      toast.error(error.response?.data?.message || error.message || 'Payment verification failed')
     }
     }
 
@@ -88,11 +94,13 @@ const MyAppointments = () => {
       if(data.success){
         // console.log(data.order);     
         initPay(data.order)
+      } else {
+        toast.error(data.message || 'Payment initialization failed')
       }
       
     } catch (error) {
       console.log(error)
-      toast.error(error.message)
+      toast.error(error.response?.data?.message || error.message || 'Payment initialization failed')
     }
   }
 
