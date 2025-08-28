@@ -75,7 +75,7 @@ const LoginUser = async (req, res) => {
 
 const getprofile = async (req, res) => {
 	try {
-		const userId = req.user.id;
+		const { userId } = req.body;
 		const userData = await userModel.findById(userId).select("-password");
 		res.json({ success: true, userData });
 	} catch (error) {
@@ -88,8 +88,7 @@ const getprofile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
 	try {
-		const userId = req.user.id;
-		const { name, phone, address, dob, gender } = req.body;
+		const { userId, name, phone, address, dob, gender } = req.body;
 		const imageFile = req.file;
 
 		if (!name || !phone || !dob || !gender) {
@@ -125,8 +124,7 @@ const updateProfile = async (req, res) => {
 
 const bookAppointments= async(req,res)=>{
 	try {
-		const userId = req.user.id;
-		const {docId,slotDate,slotTime} = req.body;
+		const {userId,docId,slotDate,slotTime} = req.body;
 
 		const docData = await doctorModel.findById(docId).select('-password')
 
@@ -183,7 +181,7 @@ const bookAppointments= async(req,res)=>{
 // API to get user appointments for frontend  my-appointments page
 const listAppointment = async(req,res) =>{
 	try {
-		const userId = req.user.id;
+		const {userId} = req.body;
 		const appointment = await appointmentModel.find({userId})		
 		res.json({success:true,appointment});
 	} catch (error) {
@@ -195,8 +193,7 @@ const listAppointment = async(req,res) =>{
 // API to cancle appointment
 const cancelAppointment = async(req,res) =>{
 	try {
-		const userId = req.user.id;
-		const {appointmentId} = req.body;
+		const {userId,appointmentId} = req.body;
 
 		const appointmentData = await appointmentModel.findById(appointmentId)
 
@@ -229,7 +226,6 @@ const razorpayInstance = new razorpay({
 // API to make payment of appointment uding razorpay
 const paymentRazorpay = async(req,res)=>{
 	try {
-		const userId = req.user.id;
 		const {appointmentId} = req.body
 
 	const appointmentData = await appointmentModel.findById(appointmentId)
@@ -237,14 +233,9 @@ const paymentRazorpay = async(req,res)=>{
 		return res.json({success:false,message:"Appointment Cancelled or not found!"})
 	}
 
-	// verify appointment user 
-	if(appointmentData.userId !== userId){
-		return res.json({success:false,message:"Unauthorized Action"})
-	}
-
 		// creating options for razorpay payment
 		const options = {
-			amount : appointmentData.amount * 10000,
+			amount : appointmentData.amount * 100,
 			currency: process.env.CURRENCY,
 			receipt :appointmentId
 
@@ -266,15 +257,8 @@ const paymentRazorpay = async(req,res)=>{
 
 const verifyRazorpay = async(req,res)=>{
 	try {
-		const userId = req.user.id;
 		const {razorpay_order_id} = req.body
 		const orderInfo = await razorpayInstance.orders.fetch(razorpay_order_id)
-
-		// Verify that the appointment belongs to the authenticated user
-		const appointmentData = await appointmentModel.findById(orderInfo.receipt)
-		if(!appointmentData || appointmentData.userId !== userId){
-			return res.json({success:false,message:"Unauthorized Action"})
-		}
 
 		if(orderInfo.status === 'paid'){
 			await appointmentModel.findByIdAndUpdate(orderInfo.receipt,{payment:true})

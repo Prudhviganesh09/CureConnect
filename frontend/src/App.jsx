@@ -12,7 +12,6 @@ import MyAppointments from './pages/MyAppointments'
 import Appointments from './pages/Appointments'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Chatbot from './components/Chatbot'
 
 
 const App = () => {
@@ -32,7 +31,6 @@ const App = () => {
         <Route path='/appointment/:docId' element={<Appointments/>} />
       </Routes>
       <Footer/>
-      <Chatbot/>
       
     </div>
   )
